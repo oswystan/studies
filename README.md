@@ -1,2 +1,2 @@
 # studies
-some studies of tech
+some studies of new tech

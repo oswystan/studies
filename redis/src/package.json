@@ -1,14 +1,14 @@
 {
-    "name": "redis-js",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "dependencies": {
-        "redis": "*"
-    },
-    "author": "wystan",
-    "license": "ISC"
+  "name": "redis-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wystan",
+  "license": "ISC",
+  "dependencies": {
+    "redis": "^2.6.3"
+  }
 }
