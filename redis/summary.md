@@ -3,18 +3,19 @@
 brew install redis
 ```
 
-## run
+## configuration
 - 修改默认配置文件redis.conf
 
 ```
 daemonize yes
 requirepass yourpassword
-dbfilename /path/to/xxxx.rdb
+dbfilename xxxx.rdb
+dir /path/to/run
 
 ```
 
-- 运行
-
+- run
+------
 ```
 redis-server /path/to/redis.conf
 ```
