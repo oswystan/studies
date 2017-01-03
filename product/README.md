@@ -1,8 +1,8 @@
 ## features
-- [] xxx
-- [] xxx
-    - [] xxx
-    - [] xxx
+- [ ] xxx
+- [ ] xxx
+    - [ ] xxx
+    - [ ] xxx
 
 
 ## issues
