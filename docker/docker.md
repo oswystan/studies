@@ -1,5 +1,4 @@
 ## install on ubuntu
-refer to [install on ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 
 ### Prerequisites for ubuntu 14.04
 
@@ -80,5 +79,8 @@ docker attach xxx           #重新链接到指定容器
 docker rename xxx yyy       #重命名
 ```
 
-## reference
+## references
 [yeasy-gitbook](https://yeasy.gitbooks.io/docker_practice/content/)
+
+[docker-doc](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
+
