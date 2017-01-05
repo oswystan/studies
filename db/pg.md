@@ -12,8 +12,18 @@ there are some tables contains the metadata of postgre sql engine.
     pg_user     -
 
 ## backup and restore
-    pgdump / pgdumpall
-    pgrestore
+
+```    
+# pg_dump / pg_dumpall / pg_restore
+
+## do backup
+pg_dump $db > db.sql
+
+## restore database
+psql -c "create database if not existed $newdb"
+psql -d $newdb -f ./db.sql
+
+```
 
 ## start server
     initdb /usr/local/var/postgres -E utf8

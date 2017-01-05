@@ -32,9 +32,11 @@ $ sudo vim /etc/modprobe.d/nf_conntrack.conf
 # change the content to 
 options nf_conntrack hashsize=262144
 
-#then run 
+# then run 
 $ docker info
 
+# modify default docker bridge ip in /etc/default/docker
+DOCKER_OPTS="--bip=192.168.1.5/24"
 ```
 
 
