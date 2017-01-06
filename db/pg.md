@@ -13,8 +13,8 @@ there are some tables contains the metadata of postgre sql engine.
 
 ## backup and restore
 
-```    
-# pg_dump / pg_dumpall / pg_restore
+```
+## commands that you can use:  pg_dump / pg_dumpall / pg_restore
 
 ## do backup
 pg_dump $db > db.sql
@@ -26,8 +26,13 @@ psql -d $newdb -f ./db.sql
 ```
 
 ## start server
+
+```
     initdb /usr/local/var/postgres -E utf8
     pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+    createdb $dbname
+```
+
 
 ## connections
     /usr/local/var/postgres/postgresql.conf: max_connections
