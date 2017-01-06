@@ -20,7 +20,7 @@ function get_project_name(user) {
         path: "/users/" + user + "/repos",
         headers: {
             "User-Agent":"Chrome",
-            "Authorization": "Basic " + new Buffer("oswystan:xiaowy08").toString("base64"),
+            "Authorization": "Basic " + new Buffer("oswystan:****").toString("base64"),
         },
     };
     https.get(opts, function (res) {
