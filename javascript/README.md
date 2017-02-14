@@ -19,4 +19,16 @@ nvm alias default 0.10.32           ## Set default node version on a shell
 ```
 
 
-## 
+## uglifyjs
+提供js压缩和美化功能的第三方工具
+
+```
+#安装
+npm install uglify-js -g
+
+#美化
+uglifyjs aaa.js -b --comments=all -o bbb.js
+
+
+
+```
