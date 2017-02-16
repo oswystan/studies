@@ -1,33 +1,31 @@
 #!/usr/bin/env node
+
 /*
  *********************************************************************************
  *                     Copyright (C) 2016 wystan
  *
  *       filename: cli.js
- *    description: 
+ *    description:
  *        created: 2016-12-23 10:20:12
  *         author: wystan
  *
  *********************************************************************************
  */
 
-var commander = function () {
-    var commands = [
-        {
-            name: "ls",
-            fn: function (argv) {
-                console.log("run " + this.name);
-                return 0;
-            },
+var commander = function() {
+    var commands = [{
+        name: "ls",
+        fn: function(argv) {
+            console.log("run " + this.name);
+            return 0;
         },
-        {
-            name: "do",
-            fn: function (argv) {
-                console.log("run " + this.name);
-                return 0;
-            },
+    }, {
+        name: "do",
+        fn: function(argv) {
+            console.log("run " + this.name);
+            return 0;
         },
-    ];
+    }, ];
 
     function help() {
         console.log("usage: cli.js [sub command]");
@@ -39,7 +37,7 @@ var commander = function () {
     }
 
     return {
-        run: function (argv) {
+        run: function(argv) {
             for (var i = 0, l = commands.length; i < l; i++) {
                 var v = commands[i];
                 if (v.name == argv[0]) {
