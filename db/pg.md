@@ -6,10 +6,11 @@
 
 ## metadata of database
 there are some tables contains the metadata of postgre sql engine.
+
     pg_database - 
     pg_tables   - 
     pg_roles    - 
-    pg_user     -
+    pg_user     - 
 
 ## backup and restore
 
