@@ -15,14 +15,14 @@ there are some tables contains the metadata of postgre sql engine.
 ## backup and restore
 
 ```
-## commands that you can use:  pg_dump / pg_dumpall / pg_restore
-
-## do backup
-pg_dump $db > db.sql
-
-## restore database
-psql -c "create database if not existed $newdb"
-psql -d $newdb -f ./db.sql
+    ## commands that you can use:  pg_dump / pg_dumpall / pg_restore
+    
+    ## do backup
+    pg_dump $db > db.sql
+    
+    ## restore database
+    psql -c "create database if not existed $newdb"
+    psql -d $newdb -f ./db.sql
 
 ```
 
