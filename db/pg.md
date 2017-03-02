@@ -25,6 +25,12 @@ psql -d $newdb -f ./db.sql
 
 ```
 
+## import data from csv
+
+```
+psql $dbname -c "copy table_name from a.csv csv header delimiter ',';"
+```
+
 ## start server
 
 ```

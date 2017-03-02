@@ -32,3 +32,12 @@ directory:
 
 
 ## connections
+
+
+## data import workflow
+- stop service
+- backup data
+- import data
+    - success => return logs to client
+    - failed  => restore data
+- start service
