@@ -29,7 +29,16 @@ psql -d $newdb -f ./db.sql
 ## import data from csv
 
 ```
-psql $dbname -c "copy table_name from a.csv csv header delimiter ',';"
+    # first backup data in table(use absolute path for file).
+    copy $table_name to '$path_to_file' csv  header delimiter ',';
+    
+    #disble triggers => import data => enable triggers
+    alter table $table_name disable trigger all / $trigger_name;
+    copy $table_name from a.csv csv header delimiter ',';
+    alter table $table_name enable trigger all / $trigger_name;
+    
+    # set the sequence value for future inserting data
+    select setval('$sequence_name', $seq, true);
 ```
 
 ## start server
