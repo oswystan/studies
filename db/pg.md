@@ -51,6 +51,9 @@ there are some tables contains the metadata of postgre sql engine.
 
 
 ## connections
+
+```
     /usr/local/var/postgres/postgresql.conf: max_connections
+```
 
 ## locks
