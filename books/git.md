@@ -1,4 +1,4 @@
-## 核心概念
+## 内部对象
 - blob：用于存储具体文件内容，是压缩了之后的；
 - commit：用于存储用户提交的commit信息
 - tree：分目录存放目录下的文件名、mode信息，以及对应版本的blob对象的hash值。
@@ -43,17 +43,35 @@ git会为每个新提交或者修改的blob对象生成一个新的hash，blob�
 ## 底层命令
 - hash-object: 获取输入对象的hash值
 - cat-file: 查看一个给定hash值得object内容、大小、类型等信息
-- update-index: 更新一个文件到index暂存区中
+- update-index: 更新一个文件到index暂存区中，并且将文件内容写入新的.git/objects/??/xxxx文件中
 - write-tree: 将暂存区的内容写入一个树对象
 - read-tree: 将树对象读取到暂存区中
 - commit-tree: 创建一个提交对象，并且需要为该commit对象提供一个树对象的hash值
 - verify-pack: 查看打包内容信息
+- diff-files: 查看暂存区和工作区之间的差异
+- diff-index:
 
 
 ## 情景分析
 - git init / git clone
 - git add 
+
+```
+------------------------------------------------
+$ git-update-index --add hello example
+------------------------------------------------
+```
+
 - git commit
+
+```
+------------------------------------------------
+$ tree=$(git-write-tree)
+$ commit=$(echo 'Initial commit' | git-commit-tree $tree)
+$ git-update-ref HEAD $commit
+------------------------------------------------
+```
+
 - git push 
 - git log
 - git status
@@ -92,3 +110,105 @@ OK
 对象查找过程：commit对象 => tree对象 => blob对象
 
 注：在commit对象中可以通过parent来跟踪提交历史信息(parent指向了父commit对象的hash)
+
+
+## 目录结构
+
+```
+├── HEAD    # 当前分支的头指针hash或者参考
+├── config  # 本地配置         
+├── description
+├── hooks
+│   ├── applypatch-msg.sample
+│   ├── commit-msg.sample
+│   ├── post-update.sample
+│   ├── pre-applypatch.sample
+│   ├── pre-commit.sample
+│   ├── pre-push.sample
+│   ├── pre-rebase.sample
+│   ├── pre-receive.sample
+│   ├── prepare-commit-msg.sample
+│   └── update.sample
+├── info
+│   └── exclude
+├── objects
+│   ├── info
+│   └── pack
+└── refs
+    ├── heads  #存放各个分支的最新commit对象对应的hash
+    └── tags   #存放tag对象对应的hash
+```
+
+## 疑问
+
+- git-diff-*的功能差异
+
+```
+                      diff-tree
+                       +----+
+                       |    |
+                       |    |
+                       V    V
+                    +-----------+
+                    | Object DB |
+                    |  Backing  |
+                    |   Store   |
+                    +-----------+
+                      ^    ^
+                      |    |
+                      |    |  diff-index --cached
+                      |    |
+          diff-index  |    V
+                      |  +-----------+
+                      |  |   Index   |
+                      |  |  "cache"  |
+                      |  +-----------+
+                      |    ^
+                      |    |
+                      |    |  diff-files
+                      |    |
+                      V    V
+                    +-----------+
+                    |  Working  |
+                    | Directory |
+                    +-----------+
+```
+
+- xxxxx.idx文件结构
+
+```
+struct pack_idx {
+    unsigned int offset;    //每个sha1 object对象在pack文件中的偏移
+    unsigned char sha1[20]; //sha1 object对象的sha1值;
+}
+
+unsigned int offset[256];   //每个sha1首字符分段在idx文件中的偏移，总共有256个段（8bit总共256中可能）
+struct pack_idx pkt[N];      
+
+```
+
+- xxxxx.pack文件结构
+
+```
+参考代码：unpack-objects.c
+struct pack_header {
+    unsigned int hdr_signature;
+    unsigned int hdr_version;
+    unsigned int hdr_entries;
+};
+============================================
+=            pack_header                   =
+============================================
+## for non-delta type: commit, tree, blob, tag
+type | size1
+size x N                          ## N <= 4
+unsigned char data[size];
+--------------------------------------------
+## for delta type
+type | size1
+size x N                          ## N <= 4
+unsigned char base_sha1[20];
+unsigned char data[size];
+============================================
+```
+
