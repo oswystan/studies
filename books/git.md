@@ -1,3 +1,7 @@
+## 整体架构
+
+![](git-arch.png)
+
 ## 内部对象
 - blob：用于存储具体文件内容，是压缩了之后的；
 
@@ -62,6 +66,23 @@ reference: Documentation/git.txt
 - verify-pack: 查看打包内容信息
 - diff-files: 查看暂存区和工作区之间的差异
 - diff-index:
+
+
+## merge策略
+
+### resolve
+
+对两个head执行一次三方合并操作
+
+### recursive
+
+对两个head执行一次三方合并，但和resolve不同的是，当两个head有不止一个共同的祖先节点，它将为所有的共同祖先节点创建一个merged tree，并用来作为三方合并的参考。是默认的pull and merge策略
+
+### octopus
+
+多方合并策略（用于head数多于2个的情况）
+
+### ours
 
 
 ## 情景分析
@@ -198,6 +219,42 @@ reference: Documentation/repository-layout.txt
 ------------------
 refs: refs/heads/master
 ------------------
+
+# ^符号
+------------------
+rev^n 在rev直接父节点中选择第n个，因为一个rev可以有多个父节点，例如在进行merge的时候
+------------------
+
+# ~符号
+------------------
+rev~n 表示rev的前向第n层父节点，是层次结构上的父节点，而不是同一层的父节点。
+------------------
+
+例子：
+========================================
+    G   H   I   J
+     \ /     \ /
+      D   E   F
+       \  |  /
+        \ | /
+         \|/
+          B     C
+           \   /
+            \ /
+             A
+
+    A =      = A^0
+    B = A^   = A^1     = A~1
+    C = A^2  = A^2
+    D = A^^  = A^1^1   = A~2
+    E = B^2  = A^^2
+    F = B^3  = A^^3
+    G = A^^^ = A^1^1^1 = A~3
+    H = D^2  = B^^2    = A^^^2  = A~2^2
+    I = F^   = B^3^    = A^^3^
+    J = F^2  = B^3^2   = A^^3^2
+
+==========================================
 ```
 
 
@@ -280,4 +337,20 @@ unsigned char data[size];
 - **如何merge一个分支到另外一个分支上去？**
 
 - **fast-foward是怎么回事，什么情况下要避免使用？**
+
+- **什么情况下一个commit对象有两个parent？**
+
+执行git merge的情况下，会为新生成的commit对象指定两个父commit，示例如下：
+
+```
+git cat-file -p a471df0501299bb6caac6d895967429056e62c6e
+tree 84628bcd1b701edb5cbc1f351de604782c2bd117
+parent 7307f4d9ce64a9d78f6925b095b9084f88b7231c
+parent 6915d19774e6999624e01dd4d04aa67d1c546fab
+author xxx <xxx@xxx.com> 1492584515 +0800
+committer xxx <xxx@xxx.com> 1492584515 +0800
+```
+
+git merge后会生成新的commit对象、tree对象、blob对象。git merge后看到的log是按照时间顺序的，是因为在git log输出的时候，做了按时间排序的处理，其实merge并没有对原来的数据提交记录进行更改，只是增加了新的commit、tree、blob对象而已，原来分支上的这些对象也都还在。这个可以通过git cat-file -p打印来验证。
+
 
