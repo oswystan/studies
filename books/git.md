@@ -1,6 +1,7 @@
 ## 整体架构
 
-![](git-arch.png)
+整体结构图:
+![git-arch](git-arch.png)
 
 ## 内部对象
 - blob：用于存储具体文件内容，是压缩了之后的；
@@ -60,7 +61,7 @@ reference: Documentation/git.txt
 - hash-object: 获取输入对象的hash值
 - cat-file: 查看一个给定hash值得object内容、大小、类型等信息
 - update-index: 更新一个文件到index暂存区中，并且将文件内容写入新的.git/objects/??/xxxx文件中
-- write-tree: 将暂存区的内容写入一个树对象
+- write-tree: 将暂存区的内容写入一个/多个树对象
 - read-tree: 将树对象读取到暂存区中
 - commit-tree: 创建一个提交对象，并且需要为该commit对象提供一个树对象的hash值
 - verify-pack: 查看打包内容信息
@@ -336,6 +337,29 @@ unsigned char data[size];
 
 - **如何merge一个分支到另外一个分支上去？**
 
+**决策过程**：
+
+    - Fastword：当HEAD是需要merge的分支的首个祖先节点时进行这个操作
+    - Do nothing：当HEAD和需要合并的分支的节点是同一个节点时；
+    - trivial merge：当只需要merge一个分支，并且不属于上述两种情况的时候
+        - trivial merge失败后，则需要进行一次真正的merge，需要根据策略调用不同的merge子程序来进行merge操作（最终使用的rcs的merge程序来进行的）
+    - octopus：当输入的合并分支数**大于1个**的时候，需要进行此项合并；
+
+**合并策略**：
+
+根据用户输入(-s $strategy)，可以有四中不同的策略模式：recursive, resolve, ours, octopus;
+
+**合并**：
+
+一个典型的merge操作需要进行如下的步骤
+
+    * 找到HEAD和target的共同祖先节点
+    * 调用merge程序进行merge操作，需要传递祖先文件内容，HEAD文件内容以及target版本文件内容
+    * 根据操作结果进行如下操作：
+        * 成功：
+        * 失败：
+
+
 - **fast-foward是怎么回事，什么情况下要避免使用？**
 
 - **什么情况下一个commit对象有两个parent？**
@@ -352,5 +376,3 @@ committer xxx <xxx@xxx.com> 1492584515 +0800
 ```
 
 git merge后会生成新的commit对象、tree对象、blob对象。git merge后看到的log是按照时间顺序的，是因为在git log输出的时候，做了按时间排序的处理，其实merge并没有对原来的数据提交记录进行更改，只是增加了新的commit、tree、blob对象而已，原来分支上的这些对象也都还在。这个可以通过git cat-file -p打印来验证。
-
-
