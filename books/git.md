@@ -264,7 +264,7 @@ rev~n 表示rev的前向第n层父节点，是层次结构上的父节点，而�
 - **git-diff-*的功能差异**
 
 ```
-                      diff-tree
+                      diff-tree	
                        +----+
                        |    |
                        |    |
@@ -376,3 +376,10 @@ committer xxx <xxx@xxx.com> 1492584515 +0800
 ```
 
 git merge后会生成新的commit对象、tree对象、blob对象。git merge后看到的log是按照时间顺序的，是因为在git log输出的时候，做了按时间排序的处理，其实merge并没有对原来的数据提交记录进行更改，只是增加了新的commit、tree、blob对象而已，原来分支上的这些对象也都还在。这个可以通过git cat-file -p打印来验证。
+
+- **不同的stage的含义**
+    - stage 0 : merge完成的对象；
+    - stage 1 : 祖先节点的tree对象；
+    - stage 2 : 当前分支头结点对应的tree对象；
+    - stage 3 : 另外一个分支头结点的tree对象；
+
