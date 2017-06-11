@@ -49,6 +49,12 @@ there are some tables contains the metadata of postgre sql engine.
     createdb $dbname
 ```
 
+## init env on ubuntu
+
+```
+sudo -u postgres createuser $USER
+sudo -u postgres createdb $USER
+```
 
 ## connections
 
