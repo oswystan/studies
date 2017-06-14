@@ -14,8 +14,13 @@ dir /path/to/run
 
 ```
 
-- run
-------
+## run
+
 ```
 redis-server /path/to/redis.conf
 ```
+
+## reference
+
+[http://www.redis.net.cn/](http://www.redis.net.cn/)
+
