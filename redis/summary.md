@@ -1,3 +1,7 @@
+## architecture
+![arch](./redis-arch.png)
+
+
 ##install on macOS
 ```
 brew install redis
