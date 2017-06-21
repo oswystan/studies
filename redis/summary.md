@@ -84,7 +84,7 @@ redis服务器使用单进程和单线程的方式处理客户端请求
 **当故障迁移**：cluster中的一台服务器down机后，如果有slave服务器，则选举一个slave节点作为主服务器，并将之前指派给主服务器的所有slot指派给自己，然后接收客户端请求。
 
 
-##install on macOS
+## install on macOS
 
 ```
 brew install redis
