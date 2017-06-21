@@ -52,7 +52,7 @@ redis服务器在单机模式下默认可以管理16个数据库，可以使用`
 在linux系统上，redis通过epool的方式监听socket，有以下几种socket
 
 - 服务器accept socket：用于作为服务监听的socket接收客户端的连接请求
-- 客户端通讯socket：有accept socket返回的用于和客户端通讯的socket，用于完成客户端的命令并返回结果
+- 客户端通讯socket：由accept socket返回的用于和客户端通讯的socket，用于完成客户端的命令并返回结果
 
 默认支持10000个客户端连接，TCP的backlog为512
 
@@ -85,11 +85,13 @@ redis服务器使用单进程和单线程的方式处理客户端请求
 
 
 ##install on macOS
+
 ```
 brew install redis
 ```
 
 ## configuration
+
 - 修改默认配置文件redis.conf
 
 ```
