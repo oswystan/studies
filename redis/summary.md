@@ -49,7 +49,7 @@ HT底层使用dict来进行存储：
 redis服务器在单机模式下默认可以管理16个数据库，可以使用`select N`的方式切换数据库，但是在集群方式下只有0号数据库可用
 
 ### 客户端连接
-在linux系统上，redis通过epool的方式监听socket，有以下几种socket
+在linux系统上，redis通过epoll的方式监听socket，有以下几种socket
 
 - 服务器accept socket：用于作为服务监听的socket接收客户端的连接请求
 - 客户端通讯socket：由accept socket返回的用于和客户端通讯的socket，用于完成客户端的命令并返回结果
