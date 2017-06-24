@@ -16,7 +16,7 @@ var _ = require("underscore");
 
 
 function on() {
-    var obj = {};    
+    var obj = {};
     _.extend(obj, backbone.Events);
     obj.on("all", function() {
         console.log(arguments);
@@ -33,15 +33,21 @@ function listen() {
     var a = {};
     var b = {};
     var c = {};
+    var d = {};
     _.extend(a, backbone.Events);
     _.extend(b, backbone.Events);
     _.extend(c, backbone.Events);
+    _.extend(d, backbone.Events);
+
 
     a.listenTo(b, "any", function () {
-        console.log(arguments);
+        console.log("a: " + arguments);
     });
     a.listenTo(c, "any", function (ev) {
         console.log(arguments);
+    });
+    d.listenTo(b, "any", function () {
+        console.log("d: " + arguments);
     });
 
     c.trigger("any", "i am c");
