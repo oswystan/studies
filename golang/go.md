@@ -1,5 +1,7 @@
 ## best practises
 
+- BDD: github.com/smartystreets/goconvey/convey
+
 ### profiling
 
 - 使用regex前先compile，避免每次都编译导致的cpu消耗
