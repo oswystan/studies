@@ -45,3 +45,9 @@ information_schema.INNODB_LOCKS
 information_schema.INNODB_LOCKS_WAITS
 ```
 
+
+## 实验
+
+- mysql主从备份
+- linux lvm机制
+- 数据库备份操作命令使用：mysqldump, xtrabackup等
