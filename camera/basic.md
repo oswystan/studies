@@ -5,3 +5,15 @@ https://wenku.baidu.com/view/e15dc468376baf1ffc4fade4.html
 https://wenku.baidu.com/view/bdd6c733eefdc8d376ee32fc.html
 
 https://wenku.baidu.com/view/8951f7c1ce2f0066f5332268.html?re=view
+
+## 硬件结构与封装
+- MIPI
+- IP Camera
+
+## 颜色空间
+RAW
+RGB
+YUV
+
+## 关键特性
+
