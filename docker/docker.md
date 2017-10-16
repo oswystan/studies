@@ -79,7 +79,14 @@ docker rm xxx               #删除一个container
 docker start xxx            #重新启动container
 docker attach xxx           #重新链接到指定容器
 docker rename xxx yyy       #重命名
+
+docker save xxx -o xxx.tar
+docker load < xxx.tar
+
 ```
+
+
+### 
 
 ## references
 [yeasy-gitbook](https://yeasy.gitbooks.io/docker_practice/content/)
