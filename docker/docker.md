@@ -86,7 +86,11 @@ docker load < xxx.tar
 ```
 
 
-### 
+### KEYS
+
+```
+ctrl + p + q  ## dattach container
+```
 
 ## references
 [yeasy-gitbook](https://yeasy.gitbooks.io/docker_practice/content/)
