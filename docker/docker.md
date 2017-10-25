@@ -68,10 +68,11 @@ docker build -t imgname:tag .
 ```
 docker run -it --rm /bin/bash           #启动一个bash
 docker run -it -p 3000:3000 /bin/bash   #启动bash并映射端口
-    --name xxx  #指定一个container名字
-    --net xxx   #指定网络类型
-    --rm        #指定退出后自动删除
-    -P          #映射全部端口到宿主机
+    --name xxx  			#指定一个container名字
+    --net xxx   			#指定网络类型
+    --rm        			#指定退出后自动删除
+    -P         		 		#映射全部端口到宿主机
+    -v hostdir:dockerdir	#挂在宿主机目录到docker目录
  
 docker ps -a                #查看所有container信息
 docker rmi xxx              #删除一个image
