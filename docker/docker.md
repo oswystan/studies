@@ -84,6 +84,10 @@ docker rename xxx yyy       #重命名
 docker save xxx -o xxx.tar
 docker load < xxx.tar
 
+docker export xxx -o xxx.tar
+docker import xxx.tar
+docker tag xxx new-xxx
+
 ```
 
 
