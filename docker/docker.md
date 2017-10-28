@@ -102,3 +102,4 @@ ctrl + p + q  ## dattach container
 
 [docker-doc](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 
+[private docker registry](http://www.cnblogs.com/cloud-it/p/7070198.html)
