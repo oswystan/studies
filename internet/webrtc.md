@@ -8,3 +8,10 @@
 
 [什么是WebRTC](https://segmentfault.com/a/1190000000436544)
 
+[webrtc入门学习](http://www.cnblogs.com/happykoukou/p/5708095.html)
+
+## SDP attributes
+
+[a=rtcp-fb: xxx goog-remb](https://tools.ietf.org/pdf/draft-alvestrand-rmcat-remb-03.pdf)
+[a=rtcp-fb: *](https://tools.ietf.org/pdf/rfc4585.pdf)
+
