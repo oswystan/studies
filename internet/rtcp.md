@@ -12,7 +12,7 @@ RTCP包经常包含多个RTCP消息(compound packet)，因此在处理的时候�
 - RTPFB(**rfc5104**)
 	- NACK
 	- TMMBR + TMMBN
-- PSFB(**rfc5104**)
+- PSFB(**rfc4585 + rfc5104**)
 	- PLI
 	- SLI
 	- RPSI
