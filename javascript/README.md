@@ -10,6 +10,7 @@ cd nvm
 
 nvm ls-remote                       ## list avaliable version for now.
 
+nvm install --lts                   ## install latest lts version
 nvm install v0.10.32                ## Install a specific version number
 nvm use 0.10                        ## Use the latest available 0.10.x release
 nvm run 0.10.32 app.js              ## Run app.js using node v0.10.32

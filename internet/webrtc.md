@@ -10,6 +10,8 @@
 
 [webrtc入门学习](http://www.cnblogs.com/happykoukou/p/5708095.html)
 
+[ICE](https://zhuanlan.zhihu.com/p/25087606)
+
 ## SDP attributes
 
 [a=rtcp-fb: xxx goog-remb](https://tools.ietf.org/pdf/draft-alvestrand-rmcat-remb-03.pdf)
