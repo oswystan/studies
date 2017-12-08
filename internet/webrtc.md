@@ -11,6 +11,7 @@
 [webrtc入门学习](http://www.cnblogs.com/happykoukou/p/5708095.html)
 
 [ICE](https://zhuanlan.zhihu.com/p/25087606)
+[即时通讯](http://www.52im.net/thread-590-1-1.html)
 
 ## SDP attributes
 
