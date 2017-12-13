@@ -20,7 +20,7 @@ function f1(succ, fail) {
             resolve();
         } else {
             console.log("f1 rej");
-            reject();
+            reject({reason: "f1 failed"});
         }
     });
     console.log("f1 before then.");
@@ -36,7 +36,7 @@ function f2(succ, fail) {
             resolve();
         } else {
             console.log("f2 rej");
-            reject();
+            reject({reason: "f2 failed"});
         }
     });
     console.log("f2 before then.");
@@ -45,9 +45,23 @@ function f2(succ, fail) {
 }
 
 console.log("step 0.");
-f1(function(){console.log("f1 succ");}, function(){console.log("f1 fail");});
+f1(function(){console.log("f1 succ");}, function(e){console.log(e);});
 console.log("step 1.");
-f2(function(){console.log("f2 succ");}, function(){console.log("f2 fail");});
+f2(function(){console.log("f2 succ");}, function(e){console.log(e);});
 console.log("step 2.");
 
+//-------------result:---------------
+//step 0.
+//enter f1.
+//f1 rej
+//f1 before then.
+//leave f1.
+//step 1.
+//enter f2.
+//f2 rej
+//f2 before then.
+//leave f2.
+//step 2.
+//{ reason: 'f1 failed' }
+//{ reason: 'f2 failed' }
 /************************************* END **************************************/
