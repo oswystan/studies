@@ -45,3 +45,8 @@ rfc2354, rfc4588
 - RTX
 - interleaving
 
+## 修改音视频比特率的方法：
+1. Use the standard b=AS:BITRATE (Chrome) or b=TIAS:BITRATE (Firefox) attributes in the SDP for the audio or video channel[1]
+2. Use codec specific attributes (this work at least for opus audio codec with maxaveragebitrate property) [2]
+3. Use the proprietary x-max-bitrate attribute in the video channel of the SDP answer.  For example with something like this:
+answer.sdp += "a=fmtp:100 x-google-max-bitrate=500\r\n";
