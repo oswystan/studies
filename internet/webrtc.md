@@ -50,3 +50,12 @@ rfc2354, rfc4588
 2. Use codec specific attributes (this work at least for opus audio codec with maxaveragebitrate property) [2]
 3. Use the proprietary x-max-bitrate attribute in the video channel of the SDP answer.  For example with something like this:
 answer.sdp += "a=fmtp:100 x-google-max-bitrate=500\r\n";
+
+
+## WebRTC协议
+- dtls
+- ice
+- rtp/rtcp and extention
+- srtp
+- sctp
+- sdp
