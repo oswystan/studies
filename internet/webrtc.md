@@ -59,3 +59,6 @@ answer.sdp += "a=fmtp:100 x-google-max-bitrate=500\r\n";
 - srtp
 - sctp
 - sdp
+>　- 在webrtc上会在一个端口上发送这些数据：STUN => DTLS(handshake) => AV-RTP / AV-RTCP
+>　- 另外stun请求是每个一段时间就发送一次，因此要求服务端收到请求的时候，需要给出响应
+>　
