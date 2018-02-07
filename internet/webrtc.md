@@ -32,6 +32,7 @@
 - session-mutiplexing: 使用相同的ssrc来关联原始数据流
 - ssrc-multiplexing:根据CNAME或者之前的NACK请求来关联原始数据流;
 - SDP描述符
+
 ```
 a=fmtp:<number> apt=<apt-val>;rtx-time=<rtx-time-val>
 a=rtpmap:xxx rtx/9000
@@ -59,6 +60,16 @@ answer.sdp += "a=fmtp:100 x-google-max-bitrate=500\r\n";
 - srtp
 - sctp
 - sdp
->　- 在webrtc上会在一个端口上发送这些数据：STUN => DTLS(handshake) => AV-RTP / AV-RTCP
->　- 另外stun请求是每个一段时间就发送一次，因此要求服务端收到请求的时候，需要给出响应
->　
+	> - 在webrtc上会在一个端口上发送这些数据：STUN => DTLS(handshake) => AV-RTP / AV-RTCP
+	> - 另外stun请求是每个一段时间就发送一次，因此要求服务端收到请求的时候，需要给出响应
+
+### 协议交互
+- STUN: 服务器和客户端都要同时支持发送和接收STUN请求和响应消息
+- DTLS-handshake：
+	- ClientHello with extensions
+	- ServerHello + Certificate + ServerKeyExchange + CertificateRequest + ServerHelloDone
+	- Certificate + ClientKeyExchange + CertificateVerify + ChangeCipherSpec + EncryptedHandshakeMessage(?)
+	- NewSessionTicket + ChangeCipherSpec + EncryptedHandShakeMessage(?)
+- SRTP/SRTCP：
+
+> 其中Certificate用于双方互发证书，ServerKeyExchange用于发送服务端公钥，ClientKeyExchange用于发送客户端公钥
