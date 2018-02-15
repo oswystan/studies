@@ -7,3 +7,11 @@
 
 ##参考
 [SSL握手过程及参考代码](http://blog.csdn.net/sjin_1314/article/details/21043613)
+
+
+## program
+
+```
+./openssl s_server -dtls -cert /home/winner/usr/project/github/relayserver/cert.pem -key /home/winner/usr/project/github/relayserver/key.pem -accept 8881
+./openssl s_client -connect 127.0.0.1:8881 -cert /home/winner/usr/project/github/relayserver/cert.pem -key /home/winner/usr/project/github/relayserver/key.pem  -dtls
+```
