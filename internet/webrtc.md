@@ -73,3 +73,14 @@ answer.sdp += "a=fmtp:100 x-google-max-bitrate=500\r\n";
 - SRTP/SRTCP：
 
 > 其中Certificate用于双方互发证书，ServerKeyExchange用于发送服务端公钥，ClientKeyExchange用于发送客户端公钥
+
+
+## Debug Tips
+```
+## enable log of webrtc on ubuntu16.04
+$ /opt/google/chrome/chrome --enable-logging --vmodule=*/webrtc/*=1
+
+## then you can explore the log
+$ less ~/.config/google-chrome/chrome_debug.log
+
+```
