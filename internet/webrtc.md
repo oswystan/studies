@@ -84,3 +84,10 @@ $ /opt/google/chrome/chrome --enable-logging --vmodule=*/webrtc/*=1
 $ less ~/.config/google-chrome/chrome_debug.log
 
 ```
+
+## openssl commands
+
+```
+## 查看证书信息
+$ openssl x509 -in cert.pem -noout -text
+```
