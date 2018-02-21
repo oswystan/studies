@@ -90,4 +90,5 @@ $ less ~/.config/google-chrome/chrome_debug.log
 ```
 ## 查看证书信息
 $ openssl x509 -in cert.pem -noout -text
+$ openssl x509 -in cacert.pem -fingerprint -sha256
 ```
