@@ -2,7 +2,7 @@
 ### UDP
 - fd: uv_udp_init() - uv_close()
 - monitor: uv_udp_recv_start() - uv_udp_recv_stop()
-- memory: uv_udp_send_cb() + uv_udp_recv_cb() - uv_alloc_cb()
+- memory: uv_udp_recv_cb() - uv_alloc_cb(); uv_udp_send() - uv_udp_send_cb();
 
 ### loop
 - uv_loop_t: uv_run() - uv_stop()
