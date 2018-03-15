@@ -1,44 +1,47 @@
 ## install on ubuntu
+docker分为社区版（CE）和企业版（EE），其中社区版中会有很多新特性可以体验，比较适合开发人员。
 
-### Prerequisites for ubuntu 14.04
+### Prerequisites for ubuntu 16.04
+```
+## remove old version
+sudo apt-get remove docker docker-engine docker.io
+
+## install prerequisites
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+## add key and repo
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+ 
+## install
+ sudo apt-get update
+ sudo apt-get install docker-ce
+
+## add current user to docker group, so you don't need to sudo docker each time
+sudo gpasswd -a ${USER} docker
+sudo service docker restart
+
+## then relogin the current user
 
 ```
-sudo apt-get update
-sudo apt-get install apt-transport-https ca-certificates
-sudo apt-key adv \
-               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
-               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list
+reference: [installation](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
-sudo apt-get update
-
-apt-cache policy docker-engine
-sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
-
-
+### change repo url
 ```
+## 
+echo "DOCKER_OPTS=\"--registry-mirror=https://pee6w651.mirror.aliyuncs.com\"" | sudo tee -a /etc/default/docker
 
-### install docker-engine
-
+## restart dockerd
+sudo service docker restart
 ```
-sudo apt-get install docker-engine
-sudo service docker start
-```
-
-## bugfix
-```
-$ sudo vim /etc/modprobe.d/nf_conntrack.conf
-# change the content to 
-options nf_conntrack hashsize=262144
-
-# then run 
-$ docker info
-
-# modify default docker bridge ip in /etc/default/docker
-DOCKER_OPTS="--bip=192.168.1.5/24"
-```
-
 
 ## HOWTO
 
@@ -66,8 +69,8 @@ docker build -t imgname:tag .
 ### 其他有用命令
 
 ```
-docker run -it --rm /bin/bash           #启动一个bash
-docker run -it -p 3000:3000 /bin/bash   #启动bash并映射端口
+docker run -it ubuntu --rm /bin/bash           #启动一个bash
+docker run -it ubuntu -p 3000:3000 /bin/bash   #启动bash并映射端口
     --name xxx  			#指定一个container名字
     --net xxx   			#指定网络类型
     --rm        			#指定退出后自动删除
