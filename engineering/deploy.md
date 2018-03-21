@@ -63,6 +63,14 @@ $ cd /usr/local/prober/whatsapp && rm -f current && ln -s vx.x current
 $ whatsapp restart
 ```
 
+## add build-log.txt to the package file as follows
+```
+    version : v0.1
+runtime-env : prd
+      build : 2018-03-21T12:52:15.825+0000
+        git : master-f54f2ae
+last-commit : f54f2ae feature: add build-log
+```
 
 
 
