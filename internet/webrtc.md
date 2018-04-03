@@ -92,3 +92,11 @@ $ less ~/.config/google-chrome/chrome_debug.log
 $ openssl x509 -in cert.pem -noout -text
 $ openssl x509 -in cacert.pem -fingerprint -sha256
 ```
+
+##源码分析
+- rtp时间戳
+
+```
+modules/rtp_rtcp/source/rtp_sender.cc : timestamp_offset_设置初始rtp包的时间戳
+
+```
