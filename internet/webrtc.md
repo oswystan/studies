@@ -100,3 +100,15 @@ $ openssl x509 -in cacert.pem -fingerprint -sha256
 modules/rtp_rtcp/source/rtp_sender.cc : timestamp_offset_设置初始rtp包的时间戳
 
 ```
+
+##系统结构
+- 协议: STUN, DTLS, RTP/RTCP, SRTP, SDP, QUIC, SCTP, UDP
+- 音视频编解码: opus, isac, cn, g.722/g.711(PCMA, PCMU), vp8/vp9, h.264;
+- 音视频同步
+- 丢包处理
+- 时间戳管理
+- jitter buffer
+- 模块分解
+- 对外接口与调用流程
+- 用户级spec
+- 设备管理
