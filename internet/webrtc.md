@@ -101,6 +101,9 @@ modules/rtp_rtcp/source/rtp_sender.cc : timestamp_offset_设置初始rtp包的�
 
 ```
 
+- audio: 时间单位是一个1/samplerate
+- video: 时间单位是sdp中的1/samplerate（不同的格式可能不一样），这个时间和帧率无关，一般是9000（如h.264）
+
 ##系统结构
 - 协议: STUN, DTLS, RTP/RTCP, SRTP, SDP, QUIC, SCTP, UDP
 - 音视频编解码: opus, isac, cn, g.722/g.711(PCMA, PCMU), vp8/vp9, h.264;
@@ -112,3 +115,4 @@ modules/rtp_rtcp/source/rtp_sender.cc : timestamp_offset_设置初始rtp包的�
 - 对外接口与调用流程
 - 用户级spec
 - 设备管理
+
