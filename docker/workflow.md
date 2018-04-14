@@ -1,4 +1,4 @@
-## overview
+## 1. overview
 
 This doc shows how to share a developing environment within a team or a company.
 
@@ -138,10 +138,20 @@ denter dev
 > When you attach a container twice, play a command in one side, it will play it in the other side too. It is not so conventinent when you want to enter different directory. When you are in this situation, you can use the customized command `denter`.
 
 
-## Setup a local registry
+### STEP: Leave a container
 
 ```shell
+## detach container
+ctrl+p+q
 
+## leave ns
+ctrl+d
+
+```
+
+## 2. Setup a local registry
+
+```shell
 ## get registry image
 docker pull registry
 docker images
@@ -160,19 +170,8 @@ docker pull x.x.x.x:5000/xxx
 
 ```
 
-### STEP: Leave a container
 
-```shell
-
-## detach container
-ctrl+p+q
-
-## leave ns
-ctrl+d
-
-```
-
-## Commands
+## 3. Commands
 
 ### image releated
 
@@ -212,8 +211,8 @@ docker cp          ## copy files between host and container
 docker port        ## list the port export to the host machine
 ```
 
-## Tips
+## 4. Tips
 
 
-## References
+## 5. References
 [offical installation guide on ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
