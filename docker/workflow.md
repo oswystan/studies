@@ -42,6 +42,20 @@ sudo docker run hello-world
 
 ```
 
+### STEP: change docker image mirror
+
+```
+##centos/redhat: /etc/sysconfig/docker
+other_args=--registry-mirror=https://registry.docker-cn.com
+
+##others: /etc/docker/daemon.json
+{
+  "registry-mirrors": ["https://registry.docker-cn.com"]
+}
+
+
+```
+
 ### STEP: Write a Dockerfile
 
 ```
