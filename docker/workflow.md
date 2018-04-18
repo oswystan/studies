@@ -84,14 +84,15 @@ docker build -t imgname:tag .
 - Share with tar file
 
 ```
-docker export xxx -o xxx.tar
-docker import xxx.tar
+docker save xxx -o xxx.tar
+docker load < xxx.tar
 docker tag xxx new-xxx
 ```
 
 - Upload to a local registry
 
 ```
+docker tag xxx 10.100.50.120:5000/xxx
 docker push 10.100.50.120:5000/xxx
 ```
 
@@ -113,14 +114,14 @@ docker images
 
 ```
 cp env.tar workspace/ && cd workspace/
-docker import env.tar
-docker tag env dev
+docker load < xxx.tar
+docker tag xxx dev
 ```
 
 - Pull image from local registry
 
 ```
-docker pull img:tag
+docker pull 10.100.50.120:5000/xxx
 ```
 
 ### STEP: Start a container
@@ -182,12 +183,14 @@ docker push 127.0.0.1:5000/xxx
 ## check registry
 curl http://10.1.250.214:5000/v2/_catalog
 curl http://10.1.250.214:5000/v2/<name>/tags/list
-curl -X DELETE http://10.1.250.214:5000/v2/<name>/manifests/<reference>
 
 ## pull it on other machine
 echo '{ "insecure-registries":["10.1.250.214:5000"] }' | sudo tee /etc/docker/daemon.json
 sudo service docker restart
 docker pull x.x.x.x:5000/xxx
+
+## delete a image on local registry
+curl -X DELETE http://10.1.250.214:5000/v2/<name>/manifests/<reference>
 
 ```
 
