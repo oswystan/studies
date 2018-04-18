@@ -48,11 +48,13 @@ sudo docker run hello-world
 ##centos/redhat: /etc/sysconfig/docker
 other_args=--registry-mirror=https://registry.docker-cn.com
 
-##others: /etc/docker/daemon.json
+##ubuntu16.04: /etc/docker/daemon.json
 {
   "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 
 ```
 
@@ -171,14 +173,19 @@ docker pull registry
 docker images
 
 ## start registry
-docker run -d -p 5000:5000 -v /mnt/date/registry:/var/lib/registry registry
+docker run -d -p 5000:5000 -v /home/docker:/var/lib/registry registry
 
 ## push local image to registry
 docker tag xxx 127.0.0.1:5000/xxx
 docker push 127.0.0.1:5000/xxx
 
+## check registry
+curl http://10.1.250.214:5000/v2/_catalog
+curl http://10.1.250.214:5000/v2/<name>/tags/list
+curl -X DELETE http://10.1.250.214:5000/v2/<name>/manifests/<reference>
+
 ## pull it on other machine
-echo '{ "insecure-registries":["10.2.20.98:5000"] }' | sudo tee /etc/docker/daemon.json
+echo '{ "insecure-registries":["10.1.250.214:5000"] }' | sudo tee /etc/docker/daemon.json
 sudo service docker restart
 docker pull x.x.x.x:5000/xxx
 
@@ -190,13 +197,16 @@ docker pull x.x.x.x:5000/xxx
 ### image releated
 
 ```shell
-docker images       ## list images
-docker rmi          ## remove a image
-docker build        ## build a image from a dockerfile
-docker export       ## export a container to a tar file
-docker import       ## import a image from a tar file
-docker commit       ## commit the change from a container
-docker tag          ## rename a image
+docker images             ## list images
+docker rmi                ## remove a image
+docker build              ## build a image from a dockerfile
+docker export             ## export a container to a tar file
+docker import             ## import a image from a tar file
+docker commit             ## commit the change from a container
+docker tag                ## rename a image
+docker save -o xxx.tar    ## save a image to a tar file
+docker load < xxx.tar     ## load image from a tar file
+
 ```
 
 ### container releated
@@ -230,3 +240,5 @@ docker port        ## list the port export to the host machine
 
 ## 5. References
 [offical installation guide on ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+[Dockerfile manual](https://docs.docker.com/engine/reference/builder/)
+[registry api spec](https://docs.docker.com/registry/spec/api/)
