@@ -2,6 +2,8 @@
 
 This doc shows how to share a developing environment within a team or a company.
 
+![workflow](workflow.jpg)
+
 ### STEP: install
 
 install docker-ce on ubuntu16.04
