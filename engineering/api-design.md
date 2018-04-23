@@ -12,3 +12,4 @@
 - Stateless Design;
 - High Avaliability Design;
 - Log Design;
+- Error code design: external error; internal error;
