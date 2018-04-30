@@ -116,3 +116,37 @@ modules/rtp_rtcp/source/rtp_sender.cc : timestamp_offset_设置初始rtp包的�
 - 用户级spec
 - 设备管理
 
+## RTCP-FIR
+
+```
+./modules/rtp_rtcp/source/rtcp_packet/psfb.cc
+modules/rtp_rtcp/source/rtcp_packet/fir.cc
+
+FMT=4(FIR), PT=206(PSFB)
+  // RFC 4585: Feedback format.
+  // Common packet format:
+  //
+  //   0                   1                   2                   3
+  //   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+  //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  //  |V=2|P|   FMT   |       PT      |          length               |
+  //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  //  |                  SSRC of packet sender                        |
+  //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  //  |             SSRC of media source (unused) = 0                 |
+  //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  //  :            Feedback Control Information (FCI)                 :
+  //  :     	                                                          :
+  // Full intra request (FIR) (RFC 5104).
+  // The Feedback Control Information (FCI) for the Full Intra Request
+  // consists of one or more FCI entries.
+  // FCI:
+  //   0                   1                   2                   3
+  //   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+  //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  //  |                              SSRC                             |
+  //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  //  | Seq nr.       |    Reserved = 0                               |
+  //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+```

@@ -9,3 +9,7 @@
 
 - **upstream机制中，是每个后端服务器建立一个连接还是每个客户端连接建立一个队后端服务的连接**
     > 针对客户端的连接创建与后端服务器的连接，客户端关闭后，代理会关闭和后端服务器的连接
+
+## reference
+(如何向模块传递参数)[http://www.voidcn.com/article/p-fbgcpxrz-kv.html]
+(location规则匹配原则)[https://blog.csdn.net/tjcyjd/article/details/50897959]
