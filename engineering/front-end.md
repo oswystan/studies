@@ -22,3 +22,8 @@
 - sort and pagination;
 - modularization;
 
+## workflow
+- third-party dependencies: dom manipulation, template render engine;
+- layout: css, html, page, data presentation;
+- mocking data fetch and sync;
+- restful api;
