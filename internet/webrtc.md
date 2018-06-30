@@ -79,9 +79,11 @@ answer.sdp += "a=fmtp:100 x-google-max-bitrate=500\r\n";
 ```
 ## enable log of webrtc on ubuntu16.04
 $ /opt/google/chrome/chrome --enable-logging --vmodule=*/webrtc/*=1
-
-## then you can explore the log
 $ less ~/.config/google-chrome/chrome_debug.log
+
+## enable log of webrtc on macOS
+$ /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-logging --vmodule=*/webrtc/*=1
+$ less Library/Application Support/Google/Chrome/chrome_debug.log
 
 ```
 
