@@ -85,6 +85,15 @@ $ less ~/.config/google-chrome/chrome_debug.log
 $ /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-logging --vmodule=*/webrtc/*=1
 $ less Library/Application Support/Google/Chrome/chrome_debug.log
 
+## user local file as video source instead of real camera device
+--use-fake-device-for-media-stream --use-file-for-fake-video-capture=./example.y4m
+
+## you can download the y4m video source from here
+https://media.xiph.org/video/derf/y4m/
+
+## or maybe you want to create your own y4m file like this
+ffmpeg -i video.mp4 -pix_fmt yuv420p -f yuv4mpegpipe out.y4m
+
 ```
 
 ## openssl commands
@@ -152,3 +161,7 @@ FMT=4(FIR), PT=206(PSFB)
   //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 ```
+
+
+## reference
+[chrome-old-versions download](https://www.slimjet.com/chrome/google-chrome-old-version.php)
