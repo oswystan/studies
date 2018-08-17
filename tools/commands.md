@@ -9,6 +9,9 @@ nmap 1.1.1.1 -p 9999
 ## get the program which open a spec port
 lsof -i :999
 
+## copy ssh pubkey to server authorized_keys
+ssh-copy-id user@server
+
 ```
 
 ## rpm commands
