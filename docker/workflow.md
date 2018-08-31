@@ -102,7 +102,7 @@ docker push 10.100.50.120:5000/xxx
 
 - Copy Dockerfile from others
 
-```
+```shell
 ## build images
 cp Dockerfile workspace/ && cd workspace
 docker build -t imgname:tag .
