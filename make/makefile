@@ -8,6 +8,11 @@
 ## 
 #######################################################################
 
+major := 0
+minor := 1
+patch := 0
+version := v$(major).$(minor).$(patch)
+
 ######################################
 # utils
 ######################################
@@ -18,6 +23,9 @@ endef
 define gen-all-stages
 $(foreach s,$1,\
 	$(shell echo $(s).$(2)))
+endef
+define print-all-vars
+$(foreach v, $(filter $(1)%,$(.VARIABLES)), $(info $(v) = $($(v))))
 endef
 
 modules      := signal stream
@@ -74,7 +82,8 @@ release.stream:
 	@echo $@
 
 print.%:
-	@echo "$($*)"
+	$(call print-all-vars,$*)
+	@true
 
 help:
 	@echo "help"
