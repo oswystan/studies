@@ -20,15 +20,15 @@ $(foreach s,$1,\
 	$(shell echo $(s).$(2)))
 endef
 
-modules := signal stream
-stages  := build package lint deploy test release
-all_builds := $(call gen-all-targets,build,$(modules))
+modules      := signal stream
+stages       := build package lint deploy test release
+all_builds   := $(call gen-all-targets,build,$(modules))
 all_packages := $(call gen-all-targets,package,$(modules))
-all_lint := $(call gen-all-targets,lint,$(modules))
-all_deploy := $(call gen-all-targets,deploy,$(modules))
-all_test := $(call gen-all-targets,test,$(modules))
-all_release := $(call gen-all-targets,release,$(modules))
-all_stages := $(call gen-all-stages,$(stages),all)
+all_lint     := $(call gen-all-targets,lint,$(modules))
+all_deploy   := $(call gen-all-targets,deploy,$(modules))
+all_test     := $(call gen-all-targets,test,$(modules))
+all_release  := $(call gen-all-targets,release,$(modules))
+all_stages   := $(call gen-all-stages,$(stages),all)
 
 .PHONY: all pipeline help 
 
