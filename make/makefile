@@ -2,10 +2,16 @@
 ##                     Copyright (C) 2018 wystan
 ##
 ##       filename: makefile
-##    description: 
+##    description: best practices of make stages
+##                 	  - lint
+##                 	  - build
+##                 	  - pack
+##                 	  - deploy
+##                 	  - test
+##                  you can use these stages to form a release pipeline
 ##        created: 2018-09-12 23:03:15
 ##         author: wystan
-## 
+##
 #######################################################################
 
 major := 0
@@ -29,36 +35,37 @@ $(foreach v, $(filter $(1)%,$(.VARIABLES)), $(info $(v) = $($(v))))
 endef
 
 modules      := signal stream
-stages       := build package lint deploy test release
+stages       := lint build pack deploy test
 all_builds   := $(call gen-all-targets,build,$(modules))
-all_packages := $(call gen-all-targets,package,$(modules))
+all_packs    := $(call gen-all-targets,pack,$(modules))
 all_lint     := $(call gen-all-targets,lint,$(modules))
 all_deploy   := $(call gen-all-targets,deploy,$(modules))
 all_test     := $(call gen-all-targets,test,$(modules))
-all_release  := $(call gen-all-targets,release,$(modules))
 all_stages   := $(call gen-all-stages,$(stages),all)
 
-.PHONY: all pipeline help 
+.PHONY: all pipeline help
 
 all: build.all
 
 pipeline: $(all_stages)
 
 build.all:$(all_builds)
-package.all:$(all_packages)
+pack.all:$(all_packs)
 lint.all:$(all_lint)
 deploy.all:$(all_deploy)
 test.all:$(all_test)
-release.all:$(all_release)
 
 build.signal:
 	@echo $@
 build.stream:
 	@echo $@
 
-package.signal:
+pack.signal: pack.signal.bz2
+pack.stream: pack.stream.rpm
+
+pack.signal.bz2:
 	@echo $@
-package.stream:
+pack.stream.rpm:
 	@echo $@
 
 lint.signal:
@@ -76,16 +83,19 @@ test.signal:
 test.stream:
 	@echo $@
 
-release.signal:
-	@echo $@
-release.stream:
-	@echo $@
-
 print.%:
 	$(call print-all-vars,$*)
 	@true
 
 help:
-	@echo "help"
-
+	@echo "\n\
+	  make help                               - show this \n\
+	  make pipeline                           - form a pipeline consist of build,pack,lint,deploy,test \n\
+	  make print.xx                           - show variables xx values \n\
+	  make build.[all|xx]                     - compile all modules or xx module only \n\
+	  make pack.[all|xx][.bz2|.rpm|.deb|.xx]  - pack all modules or xx module only \n\
+	  make lint.[all|xx]                      - lint all modules or xx module only \n\
+	  make deploy.[all|xx]                    - deploy all modules or xx module only \n\
+	  make test.[all|xx]                      - test all modules or xx module only \n\
+	"
 #######################################################################
