@@ -1,0 +1,31 @@
+[
+    {
+        "name" : "dev.lan",
+        "servers" :
+        [
+            {
+                "ip"      : "1.1.1.1",
+                "user"    : "root",
+                "service" : ["app1", "app2", "app3"]
+            }
+        ]
+    }, {
+        "name" : "dev.ali",
+        "servers" :
+        [
+            {
+                "ip"      : "2.2.2.2",
+                "user"    : "root",
+                "service" : ["app1", "app3", "app2"]
+            },{
+                "ip"      : "3.3.3.3",
+                "user"    : "root",
+                "service" : ["app3"]
+            }
+        ]
+    }, {
+        "name"    : "prd.ali",
+        "servers" : []
+    }
+]
+
