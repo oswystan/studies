@@ -94,6 +94,8 @@ https://media.xiph.org/video/derf/y4m/
 ## or maybe you want to create your own y4m file like this
 ffmpeg -i video.mp4 -pix_fmt yuv420p -f yuv4mpegpipe out.y4m
 
+## enable GC on chrome, then you can use window.gc() in your JS code.
+$ /opt/google/chrome/chrome --js-flags="--expose-gc" --enable-memory-info
 ```
 
 ## openssl commands
