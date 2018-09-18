@@ -1,4 +1,4 @@
-# how to use google perf tools
+# workflow of google perftools
 
 ## install
 
