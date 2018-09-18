@@ -1,5 +1,5 @@
 ## Useful commands:
-```
+```shell
 ## rename *.c to *.cpp
 $ rename 's/.c/.cpp/' *.c
 
@@ -15,7 +15,7 @@ ssh-copy-id user@server
 ```
 
 ## rpm commands
-```
+```shell
 # 1. How to Check an RPM Signature Package
 rpm --checksig xxx.rpm
 
