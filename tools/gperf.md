@@ -19,5 +19,18 @@ $ google-pprof --web a.out a.prof
 
 > You do **NOT** need to do anything in your app, that is GREAT.
 
-## heap profiling
+## heap checking
+
+```shell
+## compile you app with -ltcmalloc
+$ g++ youapp.cpp -ltcmalloc
+
+## run your app by the following command
+$ PPROF_PATH=/usr/bin/google-pprof HEAPPROFILE=heaprof HEAPCHECK=normal ./your-app
+
+## show the information on web (NOTICE: use the generated file name to replace the headprof.0001.heap)
+$ google-pprof --web your-app heaprof.0001.heap
+## or
+$ google-pprof --text your-app heaprof.0001.heap
+```
 
