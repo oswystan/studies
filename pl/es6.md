@@ -39,15 +39,15 @@
 - 另外还有11个内置的Symbol属性被用作特殊用途：
 
   - hasInstance: 当调用`var1 instanceof MyObject`的时候被调用
-  - species:用于构造函数
-  - match:
-  - isConcatSpreadable
-  - replace
-  - split
-  - toPrimitive
-  - iterator
-  - toStringTag
-  - unscopables
+  - species: 函数值，用于返回自定义的构造函数
+  - isConcatSpreadable：布尔值，对象需要含有`{length: 2, 0:'a', 1:'b'}`，在调用Array.concat是设置是否可以展开
+  - toPrimitive：用于自定义对象与基本数据类型之间的转换和比较
+  - match：函数值，在调用String.prototype.match()时被调用
+  - replace：函数值，在调用String.prototype.replace()时被调用
+  - split：函数值，在调用String.prototype.split()时被调用
+  - iterator：函数值，指向默认的遍历器方法，即在对对象进行`for...of`的时候会被调用
+  - toStringTag：函数值，在调用对象.toString()函数的时候被调用
+  - unscopables：指向一个对象，用于设置with关键字时，那些属性会被with环境**排除**
 
 ## module
 
