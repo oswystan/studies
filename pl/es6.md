@@ -1,6 +1,25 @@
-# new features
+# NEW FEATURES 
 
 ## generator function
+
+```javascript
+functioin taskA() {
+    //do task
+    return 'A';
+}
+function taskB() {
+    //do task 
+    return 'B';
+}
+function* gen() {
+    yield* [taskA, taskB]; //如果这里没有*，则直接一次性返回整个数组；
+}
+for(let i of gen) {
+    i.call();
+}
+```
+
+- generator函数返回一个迭代器对象`{value: xx, done: true/false}`，其中value等于taskA/taskB的返回值。
 
 ## async / await
 
