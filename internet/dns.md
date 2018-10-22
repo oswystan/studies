@@ -31,6 +31,19 @@ dig myservice.com @dnsmasq-server-ip
 
 ```
 
+# useful commands
+
+```shell
+## test conf file syntax
+$ sudo dnsmasq --test
+
+## start in no-daemon mode
+$ sudo dnsmasq --no-daemon --log-queries --log-facility=/var/log/dnsmasq.log
+
+```
+
+
+
 # reference
 
 [dnsmasq tips and tricks](https://www.linux.com/learn/intro-to-linux/2018/2/advanced-dnsmasq-tips-and-tricks)
