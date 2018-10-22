@@ -3,14 +3,24 @@
 ```shell
 sudo apt install dnsmasq -y
 
-## add dns server: server=114.114.114.114
+## add dns server: 
+##     server=114.114.114.114
+## uncomment the following options
+##     log-queries
 sudo vim /etc/dnsmasq.conf
 
+## change bootstrap options, by comment the following command
+##     DNSMASQ_OPTS="$DNSMASQ_OPTS --local-service"
+sudo vim /etc/init.d/dnsmasq
+
+## add your own domain name in /etc/hosts
+10.1.1.1 myservice.com
+
 # run dnsmasq
-sudo dnsmasq --no-daemon --log-queries --log-facility=/var/log/dnsmasq.log
+sudo service dnsmasq restart
 
 # test on another host
-dig xxx.com @10.x.x.x
+dig myservice.com @dnsmasq-server-ip
 
 ```
 
