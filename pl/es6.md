@@ -1,29 +1,131 @@
+[TOC]
+
 # NEW FEATURES 
 
 ## generator function
 
 ```javascript
-functioin taskA() {
-    //do task
-    return 'A';
+function* generatorFunction() {
+    let b = yield 'a';
+    return b;
 }
-function taskB() {
-    //do task 
-    return 'B';
-}
-function* gen() {
-    yield* [taskA, taskB]; //如果这里没有*，则直接一次性返回整个数组；
-}
-for(let i of gen) {
-    i.call();
-}
+
+var gen = generatorFunction();
+gen.next('b');
 ```
 
-- generator函数返回一个迭代器对象`{value: xx, done: true/false}`，其中value等于taskA/taskB的返回值。
+- generator function: 一种特殊类型的函数，声明的时候需要用*表示，函数体内部需要包含>=0个yield语句
+
+- generator object：生成器对象，调用generator function后返回的对象，可以通过next()函数来调用生成器函数体内部功能；
+
+- gen.next(val)：这个语句可以设置generator function中yield语句的返回值
+
+- gen.return(val)：这个语句可以设置next()函数的返回值`{value: val, done: true}`
+
+- generator function也可以作为对象的成员
+
+  > ```javascript
+  > class A
+  > {
+  >     * [Symbol.iterator]() {
+  >         yield 'field1';
+  >         yield 'field2';
+  >     }
+  > }
+  > 
+  > var a = new A();
+  > for(let i of a) {
+  >     log(i); // a, b
+  > }
+  > ```
+  >
+  >
+
+- yield：
+
+  - `yield; // {value: undefined, done: true/false}` 
+  - `yield 'a' //{value: 'a', done: true/false}`
+  - `yield func() //{value: ret_val_of_func, done: true/false}`
+  - `yield* func()`：调用另外一个生成器函数
+  - `yield new Promise((resolve, reject)=>{resolve()})`
+  - `yield [1, 2] //{value: [1,2], done:true/false}`
+  - `yield* [1, 2] //{value: 1, done: false} {value:2, done: false}`
+
+- for (let i of gen)：i为返回的生成器对象的value；
+
+### reference
+
+[Understanding ES6 Generators](https://medium.com/dailyjs/a-simple-guide-to-understanding-javascript-es6-generators-d1c350551950)
 
 ## async / await
 
 ## promise object
+
+- 三种状态：Pending, Resolved, Rejected
+
+- 例子
+
+  > ```javascript
+  > var promise = new Promise(function(resolve, reject) {
+  >     log("in function"); // called immediately
+  >     if (succ) {
+  >         resolve(0);
+  >     } else {
+  >         reject(1);
+  >     }
+  > });
+  > 
+  > promise.then( e => {
+  >     log("succ", e) // called in next loop e = 0
+  > }).catch( e => {
+  >     log("fail", e); // called in next loop e = 1
+  > });
+  > 
+  > ```
+  >
+  >
+
+- Promise.then(f)：设置下一步需要执行的操作，参数为resolve时给定的值，并返回一个新的promise对象
+
+- Promise.catch(f)：设置出错时需要执行的操作，参数为reject时给定的值，并返回一个新的promise的对象；
+
+- Promise.resolve()：返回一个新的Resolved状态的promise对象
+
+- Promise.reject()：返回一个新的Rejected状态的promise对象；
+
+- Promise.all([p1, p2, p3])：等待所有promise对象都变为Resolved状态或者有其中一个变为Rejected状态，调用then
+
+- Promise.race([p1, p2, p3])：只要其中一个promise状态变为Resolved状态就返回，并调用then
+
+  ```javascript
+  const log = console.log;
+  
+  var succ = 1;
+  let p1 = new Promise(function(resolve, reject) {
+      setTimeout(()=>{
+          log("in p1");
+          resolve(0);
+      }, 1000);
+  });
+  
+  let p2 = new Promise(function(resolve, reject) {
+      setTimeout(()=>{
+          log("in p2");
+          resolve(0);
+      }, 100);
+  });
+  
+  Promise.all([p1, p2]).then( e=>log("succ")).catch(e=>log("fail"));
+  // in p2
+  // in p1
+  // succ
+  Promise.race([p1, p2]).then( e=>log("succ")).catch(e=>log("fail"));
+  // p2
+  // succ
+  // p1
+  
+  ```
+
 
 ## class
 
