@@ -19,3 +19,11 @@
 - resources (hardware, engineers, architect, cmo)
 - regular meetings (architect, customer, PO, boss)
 
+# basic components
+
+- log (file, stdout, socket)
+- test framework
+- perf tools
+- format tools
+- lint tools
+- 
