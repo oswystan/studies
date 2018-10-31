@@ -1,8 +1,21 @@
-##互联网产品开发
-- 客户的需求是什么，你解决了哪些实际存在的问题，
-- 你的解决方案是什么，客户能否方便、简单、快捷的使用你的产品
-- 整体架构是什么，用户如何与系统进行交互，结果如何呈现
-- 软件内部使用了哪些技术，哪些是已经掌握的技术，哪些需要技术突破
-- 如何部署和监控你的产品
-- 如何测试
+# Online product development
+
+- What is the requirements & problem
+- Competitors & Analysis
+- What is your solution and differences
+- Is it easy to use
+- Architecture, interaction and presentation
+- Technologies(known and unknown)
+- How to deploy and monitor
+- How to test (UT, ST, AT)
+
+# PM
+
+- feature list
+- road map
+- CI pipeline (BUILD=>PACKAGE=>DEPLOY(dev)=>TEST=>DEPLOY(prd)=>AT)
+- risk & countermeasures
+- plan
+- resources (hardware, engineers, architect, cmo)
+- regular meetings (architect, customer, PO, boss)
 
