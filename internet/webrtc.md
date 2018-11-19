@@ -96,6 +96,10 @@ ffmpeg -i video.mp4 -pix_fmt yuv420p -f yuv4mpegpipe out.y4m
 
 ## enable GC on chrome, then you can use window.gc() in your JS code.
 $ /opt/google/chrome/chrome --js-flags="--expose-gc" --enable-memory-info
+
+## safari crash log directory
+~/Library/Logs/DiagnosticReports/
+
 ```
 
 ## openssl commands
