@@ -1,10 +1,10 @@
-## 1. overview
+# overview
 
 This doc shows how to share a developing environment within a team or a company.
 
 ![workflow](workflow.jpg)
 
-### STEP: install
+## STEP: install
 
 install docker-ce on ubuntu16.04
 
@@ -44,7 +44,7 @@ sudo docker run hello-world
 
 ```
 
-### STEP: change docker image mirror
+## STEP: change docker image mirror
 
 ```
 ##centos/redhat: /etc/sysconfig/docker
@@ -60,7 +60,7 @@ sudo systemctl restart docker
 
 ```
 
-### STEP: Write a Dockerfile
+## STEP: Write a Dockerfile
 
 ```
 ## Write your own Dockerfile
@@ -74,14 +74,14 @@ sudo systemctl restart docker
 
 ```
 
-
-### STEP: Build a image
+## STEP: Build a image
 
 ```
 docker build -t imgname:tag .
 ```
 
-### STEP: Share it
+## STEP: Share it
+
 - Share with Dockerfile
 - Share with tar file
 
@@ -98,7 +98,7 @@ docker tag xxx 10.100.50.120:5000/xxx
 docker push 10.100.50.120:5000/xxx
 ```
 
-### STEP: Get it
+## STEP: Get it
 
 - Copy Dockerfile from others
 
@@ -126,7 +126,7 @@ docker tag xxx dev
 docker pull 10.100.50.120:5000/xxx
 ```
 
-### STEP: Start a container
+## STEP: Start a container
 
 ```shell
 
@@ -138,7 +138,7 @@ docker start dev
 
 ```
 
-### STEP: Enter&Play a container
+## STEP: Enter&Play a container
 
 ```shell
 
@@ -156,8 +156,7 @@ denter dev
 
 > When you attach a container twice, play a command in one side, it will play it in the other side too. It is not so conventinent when you want to enter different directory. When you are in this situation, you can use the customized command `denter`.
 
-
-### STEP: Leave a container
+## STEP: Leave a container
 
 ```shell
 ## detach container
@@ -168,7 +167,7 @@ ctrl+d
 
 ```
 
-## 2. Setup a local registry
+# Setup a local registry
 
 ```shell
 ## get registry image
@@ -196,10 +195,9 @@ curl -X DELETE http://10.1.250.214:5000/v2/<name>/manifests/<reference>
 
 ```
 
+# Commands
 
-## 3. Commands
-
-### image releated
+## image releated
 
 ```shell
 docker images             ## list images
@@ -214,7 +212,7 @@ docker load < xxx.tar     ## load image from a tar file
 
 ```
 
-### container releated
+## container releated
 
 ```shell
 docker ps          ## list container
@@ -226,24 +224,55 @@ docker rename      ## rename a container
 docker run         ## run a NEW container
 ```
 
-### registry releated
+## registry releated
 
 ```
 docker pull
 docker push
 ```
 
-### misc
+## misc
 
 ```shell
 docker cp          ## copy files between host and container
 docker port        ## list the port export to the host machine
 ```
 
-## 4. Tips
+#  Tips
 
 
-## 5. References
+
+# best practices
+
+## simple
+
+```shell
+## create a virtual bridge network
+$ docker network create -d bridge your_bridge_name
+
+## run service container on the new bridge
+$ docker run -d --name svr1 --network your_bridge_name your_image_name
+$ docker run -d --name svr2 --network your_bridge_name your_image_name
+```
+
+## use docker-compose
+
+```shell
+## install  docker-compose
+
+## write docker-compose.yml
+
+## start services
+$ docker-compose up
+
+```
+
+
+
+
+
+# References
+
 [offical installation guide on ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 [Dockerfile manual](https://docs.docker.com/engine/reference/builder/)
 [registry api spec](https://docs.docker.com/registry/spec/api/)
