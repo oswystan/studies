@@ -59,6 +59,22 @@ message
 
 # clients
 
+## ubuntu
+
+```shell
+$ sudo apt install -y irssi
+```
+
+## macos
+
+
+
+## windows
+
+mIRC
+
 
 # reference
-http://www.irchelp.org/faq/irctutorial.html
+[manual](http://www.irchelp.org/faq/irctutorial.html)
+
+[IRC clients](http://www.irchelp.org/clients/)
