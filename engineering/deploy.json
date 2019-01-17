@@ -1,31 +1,47 @@
-[
-    {
-        "name" : "dev.lan",
-        "servers" :
-        [
-            {
-                "ip"      : "1.1.1.1",
-                "user"    : "root",
-                "service" : ["app1", "app2", "app3"]
-            }
-        ]
-    }, {
-        "name" : "dev.ali",
-        "servers" :
-        [
-            {
-                "ip"      : "2.2.2.2",
-                "user"    : "root",
-                "service" : ["app1", "app3", "app2"]
-            },{
-                "ip"      : "3.3.3.3",
-                "user"    : "root",
-                "service" : ["app3"]
-            }
-        ]
-    }, {
-        "name"    : "prd.ali",
-        "servers" : []
-    }
-]
+{
+    // all servers avaliable for us
+    "servers" :
+    [
+        {
+            "name"     : "fb-signal1",
+            "addr"     : "10.1.1.2",
+            "user"     : "root",
+            "password" : ""
+        }, {
+            "name"     : "fb-stream1",
+            "addr"     : "10.1.1.1",
+            "user"     : "root",
+            "password" : ""
+        }
+    ],
 
+    // make clusters for different services
+    "clusters" :
+    [
+        {
+            "name" : "signal-cluster",
+            "servers" :
+            [
+                { "name" : "fb-signal1" },
+            ]
+        }, {
+            "name" : "stream-cluster",
+            "servers" :
+            [
+                { "name" : "fb-stream1" },
+            ]
+        },
+    ],
+
+    // application deployment
+    "services" :
+    [
+        {
+            "name" : "signal",
+            "deploy" : "signal-cluster"
+        }, {
+            "name" : "stream",
+            "deploy" : "stream-cluster"
+        }
+    ]
+}
