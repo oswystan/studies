@@ -64,6 +64,9 @@ rpm -qdf /path/to/xxx
 # 16. How to Verify a RPM Package
 rpm -Vp xxx.rpm
 
+# 17. list files in a RPM file
+rpm -qpl xxx.rpm
+
 
 ```
 [20-practical-examples](https://www.tecmint.com/20-practical-examples-of-rpm-commands-in-linux/)
