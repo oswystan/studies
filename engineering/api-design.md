@@ -23,3 +23,15 @@
   - disconnected during communications; 
   - route disconnected during communications
 - Request timeout
+
+# Data validation
+- string
+  - length
+  - charset
+  - encoding (utf8/gbk/...)
+- long/int/float
+  - max, min
+  - default
+- enum
+  - scope
+
