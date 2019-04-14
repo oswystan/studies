@@ -3,9 +3,10 @@
 ## installation
 
 ```shell
-$ npm install --global webpack
-$ npm init
-$ npm install -D webpack-cli
+## use yarn
+$ yarn init 
+$ yarn add webpack webpack-cli -gD
+
 ```
 
 ## config
@@ -33,9 +34,9 @@ module.exports = {
 ## build
 
 ```bash
-## add new command 'build' for bundle in package.json {'script': { 'build': 'webpack'}}
-$ npm run build
-
+## add new command 'build' for bundle in package.json {'script': { 'build': 'webpack', 'watch': 'webpack --watch'}}
+$ yarn run build  ## just build the bundle file
+$ yarn run watch  ## continously watch input files and bundle them when updated
 ```
 
 
