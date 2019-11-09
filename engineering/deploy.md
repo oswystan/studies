@@ -52,9 +52,13 @@ $ cd /usr/local/prober/whatsapp && rm -f  current && ln -s vx.x current
 # env setup
 ```shell
 $ cd /usr/local/prober/whatsapp && source env_setup.sh
-$ whatsapp ps
-$ whatsapp restart
-$ whatsapp log
+$ whatsapp             # enter directory
+$ whatsapp status      # status of running app
+$ whatsapp log         # log file content
+$ whatsapp start       # start app
+$ whatsapp stop        # stop app
+$ whatsapp restart     # restart it
+$ whatsapp version     # show version of app
 ```
 
 # rollback to version x.x
