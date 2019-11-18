@@ -1,7 +1,7 @@
 # best practices
 
 - use gometalinter to lint your go code.
-- 
+-
 
 # go mod
 
@@ -21,8 +21,8 @@ $ go mod tidy
 $ go mod vendor
 
 ## build/test project with vendor
-$ go build -m vendor 
-$ go test -m vendor
+$ go build -mod vendor
+$ go test -mod vendor
 
 ```
 
